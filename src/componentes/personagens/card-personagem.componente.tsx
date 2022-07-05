@@ -1,6 +1,8 @@
 import BotaoFavorito from "../botoes/botao-favorito.componente";
 import "./card-personagem.css";
 
+
+
 /**
  * Card para cada personagem dentro da grade de personagem.
  *
