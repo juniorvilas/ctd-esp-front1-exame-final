@@ -13,8 +13,6 @@ const GradePersonagem = () => {
   return (
     <div className="grade-personagens">
       <CardPersonagem />
-      <CardPersonagem />
-      <CardPersonagem />
     </div>
   );
 };

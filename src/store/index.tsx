@@ -5,11 +5,12 @@ import thunk from 'redux-thunk';
 // Importamos applyMiddleware do Redux, para poder adicionar Thunk ou Saga como Middleware
 import {legacy_createStore as createStore, applyMiddleware } from 'redux';
 import {TypedUseSelectorHook, useSelector as useReduxSelector} from "react-redux";
+import { fetchPersonagensReducer } from "./reducers/fetchPersonagensReducer";
 
 
 
-const rootReducer = combineReducers({
-
+export const rootReducer = combineReducers({
+    person: fetchPersonagensReducer,
 });
 
 export type IRootState = ReturnType<typeof rootReducer>;
