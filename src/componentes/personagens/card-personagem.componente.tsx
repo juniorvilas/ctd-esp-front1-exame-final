@@ -37,7 +37,7 @@ const CardPersonagem = () => {
 
     dispatch(fetchPersonagemStarted());
     fetchPersonagemThunk()(dispatch);   
-    console.log(person);
+    
   },[dispatch]);
 
   return (

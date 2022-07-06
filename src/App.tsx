@@ -5,6 +5,7 @@ import PaginaInicio from "./paginas/Inicio.pagina";
 import PaginaFavoritos from "./paginas/Favoritos.pagina";
 import PaginaDetalhe from "./paginas/Detalhe.pagina";
 import Cabecalho from "./componentes/layout/cabecalho.componente";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import {Provider} from "react-redux";
 

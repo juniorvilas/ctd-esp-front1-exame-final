@@ -15,7 +15,7 @@ const PaginaInicio = () => {
     <div className="container">
       <div className="actions">
         <h3>Catálogo de Personagens</h3>
-        <button className="danger">Test Button</button>
+        <button className="danger">Teste</button>
       </div>
       <Filtros />
       <Paginacao />
