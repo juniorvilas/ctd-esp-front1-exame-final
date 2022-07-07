@@ -1,10 +1,11 @@
-import { FETCH_PERSONAGENS_START, FETCH_PERSONAGENS_SUCCESS, FETCH_PERSONAGENS_ERROR, FETCH_FAVORITO_PERSONAGENS, FAVORITAR_PERSONAGENS } from '../actions/personagens.action';
-
+import { FETCH_PERSONAGENS_START, FETCH_PERSONAGENS_SUCCESS, FETCH_PERSONAGENS_ERROR, FAVORITAR_PERSONAGENS } from '../actions/personagens.action';
+import { Personagem } from '../../type';
 
 type ActionType = {
     type: string;
     payload?: any;
 };
+
 
 const initialState = {
     personagens: [],
@@ -22,8 +23,7 @@ export const fetchPersonagensReducer = (state = initialState, action: ActionType
         case FETCH_PERSONAGENS_SUCCESS:
             return {
                 ...state,
-                isFetching: false,
-                errorMessage: initialState.errorMessage,
+                isFetching: false,           
                 personagens: action.payload.personagens,
             }
         case FETCH_PERSONAGENS_ERROR:
@@ -32,25 +32,21 @@ export const fetchPersonagensReducer = (state = initialState, action: ActionType
                 isFetching: false,
                 personagens: initialState.personagens,
                 errorMessage: action.payload,
-            }
-        case FETCH_FAVORITO_PERSONAGENS:
-            return {
-                ...state,
-                isFetching: false,
-                errorMessage: initialState.errorMessage,
-                personagens: action.payload.filter((personagem: any) => (personagem.favorito) ?? personagem),
-            }
+            }     
         case FAVORITAR_PERSONAGENS:
             return {
                 ...state,
-                isFetching: false,
-                errorMessage: initialState.errorMessage,
-                personagens: [
-                    state.personagens.filter((st) => st.id === action.payload ? { ...st, favorito: !st.favorito } : st),
-                ],               
-     
-            }
-    
+                personagens: state.personagens.map((personagem: Personagem) => {
+                  if (personagem.id !== action.payload) {
+                      return personagem;
+                    }
+                    return {
+                      ...personagem,
+                      favorito: !personagem.favorito,
+                    };
+                })
+              }
+
         default:
             return state;
     }

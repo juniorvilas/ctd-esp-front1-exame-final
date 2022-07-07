@@ -39,8 +39,11 @@ const Filtros = () => {
         onChange={handlerOnChange}
         value={texto}        
       />
-      <Button onClick={handlerClick} variant="primary">Pesquisar</Button>
-      <Button onClick={hanclerClear} variant="secondary">Limpar</Button>
+      <div className="mt-2 d-grid gap-2">
+      <Button size="lg" onClick={handlerClick} variant="primary">Pesquisar</Button>
+      <Button size="lg" onClick={hanclerClear} variant="secondary">Limpar</Button>
+      </div>
+      
      
       
     </div>

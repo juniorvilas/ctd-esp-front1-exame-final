@@ -1,22 +1,14 @@
 import BotaoFavorito from "../botoes/botao-favorito.componente";
-import React, { useEffect, useState } from 'react';
 import "./card-personagem.css";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
-import { fetchPersonagemStarted, fetchPersonagemThunk, favoritarPersonagens } from '../../store/actions/personagens.action';
+import { favoritarPersonagens } from '../../store/actions/personagens.action';
+import { Personagem } from '../../type';
 
 
-type GlobalState = {
-  person: {
-    personagens: {
-      id: number;
-      name: string;
-      image: string;
-     
-    }[];
-    isFetching: boolean;
-    errorMessage: string;
-  }
+
+type Person = {
+  personagem: Personagem;
 }
 
 
@@ -28,44 +20,34 @@ type GlobalState = {
  *
  * @returns Elemento JSX
  */
-const CardPersonagem = () => {
+const CardPersonagem = ({ personagem }: Person) => {
 
-  const person = useSelector((state: GlobalState) => state.person);
-  const dispatch = useDispatch();  
 
-  const handlerOnClick = (id: number) => {
-   //dispatch(favoritarPersonagens(id));
-  } 
-  
-  useEffect(() => {   
+  const dispatch = useDispatch();
 
-    dispatch(fetchPersonagemStarted());
-    fetchPersonagemThunk()(dispatch);   
+  const handlerFavorito = () => {
+    dispatch(favoritarPersonagens(personagem.id));
+  }
 
-  },[dispatch]);
 
   return (
 
     <>
-    {person.isFetching && <span>Carregando...</span>}
-    {person.personagens && person.personagens.map((personagem: any) => (
-       <div key={personagem.created} className="card-personagem">
-       <img
-         src={personagem.image}
-         alt={personagem.name}
-       />
-       <div className="card-personagem-body">
-         <span>{personagem.name}</span>
-         <BotaoFavorito handlerOnClick={() => dispatch(favoritarPersonagens(personagem.id))} isFavorito={personagem.favorito} />
-       </div>
-     </div>
-    ))}
-   
+      <div className="card-personagem">
+        <img
+          src={personagem.image}
+          alt={personagem.name}
+        />
+        <div className="card-personagem-body">
+          <span>{personagem.name}</span>
+          <BotaoFavorito handlerOnClick={handlerFavorito} isFavorito={personagem.favorito} />
+        </div>
+      </div>
     </>
-    
-    
-    
-    
+
+
+
+
   );
 };
 

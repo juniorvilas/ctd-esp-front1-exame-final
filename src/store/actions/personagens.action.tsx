@@ -1,15 +1,13 @@
+import { Personagem } from '../../type'
+
 export const FETCH_PERSONAGENS_START = "FETCH_PERSONAGENS_START";
 export const FETCH_PERSONAGENS_SUCCESS = 'FETCH_PERSONAGENS_SUCCESS';
 export const FETCH_PERSONAGENS_ERROR = 'FETCH_PERSONAGENS_ERROR';
-export const FETCH_FAVORITO_PERSONAGENS = "FETCH_FAVORITO_PERSONAGENS";
 export const FAVORITAR_PERSONAGENS = "FAVORITAR_PERSONAGENS";
 
 
-type Personagem = {
-    id: number;
-    name: string;
-    image: number;  
-}
+
+
 
 export const  fetchPersonagemStarted = () => {
     return { type: FETCH_PERSONAGENS_START };
@@ -29,19 +27,13 @@ export const fetchPersonagemError = (errorMessage: string) => {
     }
 }
 
-export const fetchFavoritoPensonagens = (personagens: Personagem[]) => {
 
-    return { 
-        type: FETCH_FAVORITO_PERSONAGENS,
-        payload: { personagens }
-    }    
-}
 
 export const favoritarPersonagens = (id: number) => {
 
     return { 
         type: FAVORITAR_PERSONAGENS,
-        payload:   id ,
+        payload: id,
     }   
 
 }
@@ -76,18 +68,4 @@ export const filterPersonagemThunk = (texto: string) => async (dispatch: any) =>
     } 
 } 
 
-/* export const favoritarPersonagemThunk = (id: number) => async (dispatch: any) => {
-    
-    dispatch(fetchPersonagemStarted());   
-    try {
-        const response = await fetch('https://rickandmortyapi.com/api/character'); 
-        const json = await response.json(); 
-        const jsonFilter = json.results.map((result) =>  ({...result, favorito: false}))
-        const favorito = jsonFilter.filter((personagem: any) => (personagem.id === id) ?? !personagem.favorito)
-        dispatch(fetchPersonagemSuccess(favorito));                  
-
-    } catch (error: any) {
-        dispatch(fetchPersonagemError(error.message));
-    }    
-}  */
 
