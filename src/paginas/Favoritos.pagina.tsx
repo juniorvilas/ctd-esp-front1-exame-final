@@ -1,7 +1,8 @@
 import GradePersonagens from "../componentes/personagens/grade-personagens.componente";
 import { useEffect, useState } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Personagem, GlobalState } from '../type'
+import { fetchPersonagemThunk } from '../store/actions/personagens.action';
 /**
  * Esta é a página de favoritos. Aqui você deve ver todos os personagens marcados como favoritos
  *
@@ -14,7 +15,7 @@ const PaginaFavoritos = () => {
   const [favPersonagens, setFavPersonagens] = useState<Personagem[]>();
   const personagens = useSelector((state: GlobalState) => state.person.personagens);
 
-
+  const dispatch = useDispatch();
 
   useEffect(() => {
     let personagensFiltrados = personagens.filter((personagem: Personagem) => personagem.favorito ?? personagem);
@@ -23,11 +24,13 @@ const PaginaFavoritos = () => {
 
 
 
+
+
   return (
     <div className="container">
       <div className="actions">
         <h3>Personagens Favoritos</h3>
-        <button className="danger">Test Button</button>
+        <button onClick={() => fetchPersonagemThunk()(dispatch)} className="mb-2 danger">Remover tudo</button>
       </div>
       <GradePersonagens personagens={favPersonagens}/>
     </div>

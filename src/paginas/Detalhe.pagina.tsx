@@ -1,6 +1,10 @@
 import "./Detalhe.css";
 import BotaoFavorito from "../componentes/botoes/botao-favorito.componente";
 import CardEpisodio from "../componentes/episodios/card-episodio.componente";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { GlobalState } from '../type';
+
 
 
 /**
@@ -16,6 +20,8 @@ import CardEpisodio from "../componentes/episodios/card-episodio.componente";
  * @returns Página de detalhe
  */
 const PaginaDetalhe = () => {
+
+
   return (
     <div className="container">
       <h3>Rick Sanchez</h3>

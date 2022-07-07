@@ -42,8 +42,7 @@ export const favoritarPersonagens = (id: number) => {
 
 
 export const fetchPersonagemThunk = () => async (dispatch: any) => {
-    dispatch(fetchPersonagemStarted());
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    dispatch(fetchPersonagemStarted());    
     try {
         const response = await fetch('https://rickandmortyapi.com/api/character'); 
         const json = await response.json(); 
@@ -68,4 +67,27 @@ export const filterPersonagemThunk = (texto: string) => async (dispatch: any) =>
     } 
 } 
 
+export const fetchNextPageThunk = (pagina: number) => async (dispatch: any) => {    
+    try {
+        const response = await fetch(`https://rickandmortyapi.com/api/character?page=${pagina}`); 
+        const json = await response.json();
+        const jsonFilter = json.results.map((result) =>  ({...result, favorito: false}))                    
+        dispatch(fetchPersonagemSuccess(jsonFilter));                
+
+    } catch (error: any) {
+        dispatch(fetchPersonagemError(error.message));
+    } 
+} 
+
+export const fetchPersonagemIDThunk = (id: number) => async (dispatch: any) => {    
+    try {
+        const response = await fetch(`https://rickandmortyapi.com/api/character/${id}`); 
+        const json = await response.json();
+        const jsonFilter = json.map((result) =>  ({...result, favorito: false}))                 
+        dispatch(fetchPersonagemSuccess(jsonFilter));                  
+
+    } catch (error: any) {
+        dispatch(fetchPersonagemError(error.message));
+    } 
+} 
 

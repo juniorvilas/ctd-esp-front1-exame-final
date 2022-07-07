@@ -1,8 +1,9 @@
 import BotaoFavorito from "../botoes/botao-favorito.componente";
 import "./card-personagem.css";
 import { useDispatch } from 'react-redux';
+import { Link } from "react-router-dom";
 
-import { favoritarPersonagens } from '../../store/actions/personagens.action';
+import { favoritarPersonagens, fetchPersonagemIDThunk } from '../../store/actions/personagens.action';
 import { Personagem } from '../../type';
 
 
@@ -30,14 +31,18 @@ const CardPersonagem = ({ personagem }: Person) => {
   }
 
 
+
   return (
 
     <>
       <div className="card-personagem">
-        <img
+        <Link  to="/detalhe">
+         <img
           src={personagem.image}
           alt={personagem.name}
         />
+        </Link>
+        
         <div className="card-personagem-body">
           <span>{personagem.name}</span>
           <BotaoFavorito handlerOnClick={handlerFavorito} isFavorito={personagem.favorito} />

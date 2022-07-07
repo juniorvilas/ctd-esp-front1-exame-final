@@ -16,6 +16,7 @@ import { useEffect } from 'react';
 const PaginaInicio = () => {
 
   const { personagens } = useSelector((state: GlobalState) => state.person);
+  
 
   const dispatch = useDispatch();  
 
