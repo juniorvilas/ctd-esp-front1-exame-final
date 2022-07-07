@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import "./card-personagem.css";
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchPersonagemStarted, fetchPersonagemThunk } from '../../store/actions/personagens.action';
+import { fetchPersonagemStarted, fetchPersonagemThunk, favoritarPersonagens } from '../../store/actions/personagens.action';
 
 
 type GlobalState = {
@@ -32,12 +32,16 @@ const CardPersonagem = () => {
 
   const person = useSelector((state: GlobalState) => state.person);
   const dispatch = useDispatch();  
+
+  const handlerOnClick = (id: number) => {
+   //dispatch(favoritarPersonagens(id));
+  } 
   
   useEffect(() => {   
 
     dispatch(fetchPersonagemStarted());
     fetchPersonagemThunk()(dispatch);   
-    
+
   },[dispatch]);
 
   return (
@@ -45,14 +49,14 @@ const CardPersonagem = () => {
     <>
     {person.isFetching && <span>Carregando...</span>}
     {person.personagens && person.personagens.map((personagem: any) => (
-       <div key={personagem.id} className="card-personagem">
+       <div key={personagem.created} className="card-personagem">
        <img
          src={personagem.image}
          alt={personagem.name}
        />
        <div className="card-personagem-body">
          <span>{personagem.name}</span>
-         <BotaoFavorito isFavorito={false} />
+         <BotaoFavorito handlerOnClick={() => dispatch(favoritarPersonagens(personagem.id))} isFavorito={personagem.favorito} />
        </div>
      </div>
     ))}

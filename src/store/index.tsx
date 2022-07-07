@@ -25,10 +25,3 @@ const store = createStore(
 
 export default store;
 
-/* const store = createStore(reducers, compose(
-    applyMiddleware(thunk),
-    composeWithDevTools(),
-    
-    ));
-
-export default store; */

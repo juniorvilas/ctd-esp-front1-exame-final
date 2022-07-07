@@ -13,15 +13,17 @@ import estrelaNaoMarcada from "../../img/star.png";
 
 interface Botao {
   isFavorito: boolean;
-  onClick?: any;
+  handlerOnClick?: any;
 }
 
-const BotaoFavorito = ( { isFavorito, onClick}:Botao) => {
+const BotaoFavorito = ( { isFavorito, handlerOnClick}:Botao) => {
   const src = isFavorito ? estrelaMarcada : estrelaNaoMarcada;
+
+ 
 
   return (
     <div className="botao-favorito">
-      <img src={src} alt={"favorito"} onClick={onClick} />
+      <img src={src} alt={"favorito"} onClick={handlerOnClick} />
     </div>
   );
 };
