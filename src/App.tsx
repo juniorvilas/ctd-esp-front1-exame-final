@@ -7,7 +7,7 @@ import PaginaDetalhe from "./paginas/Detalhe.pagina";
 import Cabecalho from "./componentes/layout/cabecalho.componente";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import {Provider} from "react-redux";
+import { Provider } from "react-redux";
 
 import store from './store'
 

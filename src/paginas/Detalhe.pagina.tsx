@@ -1,10 +1,8 @@
 import "./Detalhe.css";
 import BotaoFavorito from "../componentes/botoes/botao-favorito.componente";
 import CardEpisodio from "../componentes/episodios/card-episodio.componente";
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { GlobalState } from '../type';
-
+import { Personagem, GlobalState } from '../type';
+import { useSelector } from "react-redux";
 
 
 /**
@@ -20,11 +18,13 @@ import { GlobalState } from '../type';
  * @returns Página de detalhe
  */
 const PaginaDetalhe = () => {
-
+  const { id, name, location, gender, favorito} = useSelector((state: Personagem) => state);   
+  console.log(name);
 
   return (
+
     <div className="container">
-      <h3>Rick Sanchez</h3>
+      <h3></h3>
       <div className={"detalhe"}>
         <div className={"detalhe-header"}>
           <img

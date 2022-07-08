@@ -30,13 +30,16 @@ const CardPersonagem = ({ personagem }: Person) => {
     dispatch(favoritarPersonagens(personagem.id));
   }
 
-
+  const handlerDetalhe = () => {
+    fetchPersonagemIDThunk(personagem.id)(dispatch);
+    console.log(fetchPersonagemIDThunk(personagem.id)(dispatch));
+  } 
 
   return (
 
     <>
       <div className="card-personagem">
-        <Link  to="/detalhe">
+        <Link onClick={handlerDetalhe}  to="/detalhe">
          <img
           src={personagem.image}
           alt={personagem.name}

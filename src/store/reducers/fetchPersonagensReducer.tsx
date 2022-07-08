@@ -1,4 +1,4 @@
-import { FETCH_PERSONAGENS_START, FETCH_PERSONAGENS_SUCCESS, FETCH_PERSONAGENS_ERROR, FAVORITAR_PERSONAGENS } from '../actions/personagens.action';
+import { FETCH_PERSONAGENS_START, FETCH_PERSONAGENS_SUCCESS, FETCH_PERSONAGEM_ID_SUCCESS, FETCH_PERSONAGENS_ERROR, FAVORITAR_PERSONAGENS } from '../actions/personagens.action';
 import { Personagem } from '../../type';
 
 type ActionType = {
@@ -23,8 +23,14 @@ export const fetchPersonagensReducer = (state = initialState, action: ActionType
         case FETCH_PERSONAGENS_SUCCESS:
             return {
                 ...state,
-                isFetching: false,           
+                isFetching: false,
                 personagens: action.payload.personagens,
+            }
+        case FETCH_PERSONAGEM_ID_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                personagem: action.payload,
             }
         case FETCH_PERSONAGENS_ERROR:
             return {
@@ -32,20 +38,20 @@ export const fetchPersonagensReducer = (state = initialState, action: ActionType
                 isFetching: false,
                 personagens: initialState.personagens,
                 errorMessage: action.payload,
-            }     
+            }
         case FAVORITAR_PERSONAGENS:
             return {
                 ...state,
                 personagens: state.personagens.map((personagem: Personagem) => {
-                  if (personagem.id !== action.payload) {
-                      return personagem;
+                    if (personagem.id !== action.payload) {
+                        return personagem;
                     }
                     return {
-                      ...personagem,
-                      favorito: !personagem.favorito,
+                        ...personagem,
+                        favorito: !personagem.favorito,
                     };
                 })
-              }
+            }
 
         default:
             return state;
