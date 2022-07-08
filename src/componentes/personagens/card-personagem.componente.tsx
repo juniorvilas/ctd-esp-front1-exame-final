@@ -31,8 +31,7 @@ const CardPersonagem = ({ personagem }: Person) => {
   }
 
   const handlerDetalhe = () => {
-    fetchPersonagemIDThunk(personagem.id)(dispatch);
-    console.log(fetchPersonagemIDThunk(personagem.id)(dispatch));
+    fetchPersonagemIDThunk(personagem.id)(dispatch);    
   } 
 
   return (

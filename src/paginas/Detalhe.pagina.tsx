@@ -1,7 +1,6 @@
 import "./Detalhe.css";
 import BotaoFavorito from "../componentes/botoes/botao-favorito.componente";
 import CardEpisodio from "../componentes/episodios/card-episodio.componente";
-import { Personagem, GlobalState } from '../type';
 import { useSelector } from "react-redux";
 
 
@@ -18,23 +17,25 @@ import { useSelector } from "react-redux";
  * @returns Página de detalhe
  */
 const PaginaDetalhe = () => {
-  const { id, name, location, gender, favorito} = useSelector((state: Personagem) => state);   
-  console.log(name);
+  const statePersonagem = useSelector((state: any) => state.person.personagem);   
+  console.log(statePersonagem);
+  const arrayEpisodios = statePersonagem.personagem.episode.slice(statePersonagem.personagem.episode.indexOf("https://rickandmortyapi.com/api/episode/") + 1);
+  console.log(arrayEpisodios);
 
   return (
 
     <div className="container">
-      <h3>{name}</h3>
+      <h3>{statePersonagem?.personagem?.name}</h3>
       <div className={"detalhe"}>
         <div className={"detalhe-header"}>
           <img
-            src="https://rickandmortyapi.com/api/character/avatar/1.jpeg"
-            alt="Rick Sanchez"
+            src={statePersonagem?.personagem?.image}
+            alt={statePersonagem?.personagem?.name}
           />
           <div className={"detalhe-header-texto"}>
-            <p>Rick Sanchez</p>
-            <p>Planeta: Earth</p>
-            <p>Genero: Male</p>
+            <p>{statePersonagem?.personagem?.name}</p>
+            <p>Planeta: {statePersonagem?.personagem?.origin.name}</p>
+            <p>Genero: {statePersonagem?.personagem?.gender}</p>
           </div>
           <BotaoFavorito isFavorito={false} />
         </div>
