@@ -24,7 +24,7 @@ const PaginaDetalhe = () => {
   return (
 
     <div className="container">
-      <h3></h3>
+      <h3>{name}</h3>
       <div className={"detalhe"}>
         <div className={"detalhe-header"}>
           <img
