@@ -1,4 +1,5 @@
 import "./card-episodio.css";
+import { Episode } from '../../type'
 
 /**
  * Card para cada episódio na visualização do personagem.
@@ -8,13 +9,19 @@ import "./card-episodio.css";
  *
  * @returns Elemento JSX
  */
-const CardEpisodio = () => {
+
+
+type Props = {
+  episodio: Episode
+}
+
+const CardEpisodio = ({ episodio }: Props) => {
   return (
     <div className="card-episodio">
-      <h4>Close Rick-counters of the Rick Kind</h4>
+      <h4>{episodio.name}</h4>
       <div>
-        <span>S01E01</span>
-        <span>Lançado em: April 7, 2014</span>
+        <span>{episodio.episode}</span>
+        <span>Lançado em: {episodio.air_date}</span>
       </div>
     </div>
   );

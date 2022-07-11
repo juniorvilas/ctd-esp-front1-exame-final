@@ -15,25 +15,26 @@ import { useEffect } from 'react';
  */
 const PaginaInicio = () => {
 
-  const { personagens } = useSelector((state: GlobalState) => state.person);
+  const { personagens, isFetching, errorMessage } = useSelector((state: any) => state.person);
   
 
   const dispatch = useDispatch();  
 
   useEffect(() => {
-    if(personagens.length === 0) {
-      dispatch(fetchPersonagemStarted());
-      fetchPersonagemThunk()(dispatch);
-    }
-     })
+    fetchPersonagemThunk()(dispatch);        
+    
+  },[dispatch]);
 
   return (
-    <div className="container">
+      
+      <div className="container">
       <div className="actions">
         <h3>Catálogo de Personagens</h3>        
       </div>
       <Filtros />
       <Paginacao />
+      {isFetching && <span>Carregando...</span>}
+      {errorMessage && <span>Ocorreu um erro: {errorMessage}</span>}
       <GradePersonagens personagens={personagens}/>
       <Paginacao />
     </div>

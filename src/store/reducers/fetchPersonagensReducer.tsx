@@ -1,16 +1,16 @@
-import { FETCH_PERSONAGENS_START, FETCH_PERSONAGENS_SUCCESS, FETCH_PERSONAGEM_ID_SUCCESS, FETCH_PERSONAGENS_ERROR, FAVORITAR_PERSONAGENS } from '../actions/personagens.action';
-import { Personagem } from '../../type';
+import { FETCH_EPISODES, FETCH_PERSONAGENS_START, FETCH_PERSONAGENS_SUCCESS, FETCH_PERSONAGEM_ID_SUCCESS, FETCH_PERSONAGENS_ERROR, FAVORITAR_PERSONAGENS } from '../actions/personagens.action';
+import { Info, Personagem, ActionType } from '../../type';
 
-type ActionType = {
-    type: string;
-    payload?: any;
-};
 
 
 const initialState = {
     personagens: [],
     isFetching: false,
     errorMessage: undefined,
+    episodes: [],
+    personagem: {} as Personagem,
+    paginacao: {} as Info,
+
 }
 
 export const fetchPersonagensReducer = (state = initialState, action: ActionType) => {
@@ -24,13 +24,19 @@ export const fetchPersonagensReducer = (state = initialState, action: ActionType
             return {
                 ...state,
                 isFetching: false,
-                personagens: action.payload.personagens,
+                paginacao: action.payload.info,
+                personagens: action.payload.results,
             }
         case FETCH_PERSONAGEM_ID_SUCCESS:
             return {
                 ...state,
                 isFetching: false,
                 personagem: action.payload,
+            }
+        case FETCH_EPISODES:
+            return {
+                ...state,
+                episodes: action.payload,
             }
         case FETCH_PERSONAGENS_ERROR:
             return {

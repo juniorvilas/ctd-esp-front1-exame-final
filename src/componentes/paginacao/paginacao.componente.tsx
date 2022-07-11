@@ -1,7 +1,7 @@
 import "./paginacao.css";
 import { fetchNextPageThunk } from '../../store/actions/personagens.action'
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { GlobalState } from '../../type'
 
 /**
  * Componente que contém os botões para paginar
@@ -14,25 +14,31 @@ import { useDispatch } from 'react-redux';
 
 
 const Paginacao = () => {
-    const [page, setPage] = useState(2);
+    const { paginacao }  = useSelector((state: GlobalState) => state.person);
+     
     const dispatch = useDispatch();
 
-    const handleNextPage = () => {
-      setPage((prevPagina) => Math.min(prevPagina + 1, 826));     
-      fetchNextPageThunk(page)(dispatch);
-      console.log(page)
+   const handleNextPage = () => {
+      if(paginacao.next) {
+        fetchNextPageThunk(paginacao.next)(dispatch);
+      }     
     };
 
     const handlePrevPage = () => {
-      setPage((prevPagina) => Math.max(prevPagina - 1, 1));     
-      fetchNextPageThunk(page)(dispatch);
-      console.log(page)
-    };
+      if(paginacao.prev) {
+        fetchNextPageThunk(paginacao.prev)(dispatch);
+      }        
+    }; 
+
+    const buttonDisabled = () => {
+      if(paginacao.prev === null) return true;
+      return false;
+    }
 
 
   return (
     <div className="paginacao">
-      <button disabled={false} onClick={handlePrevPage} className={"primary"}>
+      <button disabled={buttonDisabled()} onClick={handlePrevPage} className={"primary"}>
         Anterior
       </button>
       <button disabled={false} onClick={handleNextPage} className={"primary"}>
