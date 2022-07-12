@@ -1,8 +1,8 @@
 header {
-  background-color: white;
+  background-color: #2c2f33;
   border-bottom: 1px solid #d0d0d0;
-  width: calc(100% - 60px);
-  color: black;
+  width: 100%;
+  color: white;
   padding: 25px 30px;
 }
 
@@ -31,12 +31,12 @@ header > div nav ul li {
 header > div nav ul li a {
   padding: 5px 20px;
   text-decoration: none;
-  color: black;
-  opacity: 0.8;
+  color: white;
+  opacity: 1;
   font-size: 16px;
   font-weight: 500;
 }
 
 header > div nav ul li a:hover {
-  color: rgba(57, 146, 255, 1);
+  color: #7289da;
 }

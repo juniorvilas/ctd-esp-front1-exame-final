@@ -1,10 +1,11 @@
 import Filtros from "../componentes/personagens/filtros.componente";
 import GradePersonagens from "../componentes/personagens/grade-personagens.componente";
 import Paginacao from "../componentes/paginacao/paginacao.componente";
-import { GlobalState } from '../type';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPersonagemStarted, fetchPersonagemThunk } from '../store/actions/personagens.action';
+import { fetchPersonagemThunk } from '../store/actions/personagens.action';
 import { useEffect } from 'react';
+import './Inicio.css';
+
 /**
  * Esta é a página principal. Aqui você deve ver o painel de filtro junto com a grade de personagens.
  *

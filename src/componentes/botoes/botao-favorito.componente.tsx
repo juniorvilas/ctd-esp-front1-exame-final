@@ -7,7 +7,7 @@ import estrelaNaoMarcada from "../../img/star.png";
  *
  * Terá que tipar as propriedades se utilizar este componente
  *
- *
+ * @param { Botao } 
  * @returns Elemento JSX
  */
 

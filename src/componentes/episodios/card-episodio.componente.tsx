@@ -1,20 +1,20 @@
 import "./card-episodio.css";
 import { Episode } from '../../type'
 
-/**
- * Card para cada episódio na visualização do personagem.
- *
- * Você precisará adicionar as propriedades necessárias para exibir os dados dos episódios
- *
- *
- * @returns Elemento JSX
- */
 
 
 type Props = {
   episodio: Episode
 }
 
+/**
+ * Card para cada episódio na visualização do personagem.
+ *
+ * Você precisará adicionar as propriedades necessárias para exibir os dados dos episódios
+ *
+ * @param { Props }
+ * @returns Elemento JSX
+ */
 const CardEpisodio = ({ episodio }: Props) => {
   return (
     <div className="card-episodio">
